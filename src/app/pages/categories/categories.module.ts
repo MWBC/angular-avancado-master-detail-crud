@@ -11,7 +11,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
     CommonModule,
     CategoriesRoutingModule, 
     CategoryFormComponent, 
-    CategoryListComponent
+    CategoryListComponent, 
   ]
 })
 export class CategoriesModule { }
