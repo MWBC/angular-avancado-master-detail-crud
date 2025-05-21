@@ -2,6 +2,8 @@ import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
@@ -12,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-form',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css'
 })
@@ -35,7 +37,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     private categoryService: CategoryService, 
     private route: ActivatedRoute, 
     private router: Router, 
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder, 
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +53,19 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked(): void {
     
     this.setTitlePage();
+  }
+
+  submitForm() {
+
+    this.submittingForm = true;
+
+    if(this.currentAction == 'new') {
+
+      this.createCategory();
+    }else {
+
+      this.updateCategory();
+    }
   }
 
   private setCurrentAction(): void {
@@ -103,6 +119,50 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       const categoryName = this.category.name || '';
 
       this.pageTitle = 'Editando Categoria: ' + categoryName;
+    }
+  }
+
+  private createCategory() {
+
+    const category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.create(category).subscribe({
+
+      next: category => this.actionForSuccess(category), 
+      error: error => this.actionForError(error)
+    });
+  }
+
+  private updateCategory() {
+
+    const category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.update(category).subscribe({
+
+      next: category => this.actionForSuccess(category), 
+      error: error => this.actionForError(error)
+    });
+  }
+
+  private actionForSuccess(category: Category) {
+
+    this.toastr.success('Solicitação processada com sucesso!');
+
+    this.router.navigate(['categories']);
+  }
+
+  private actionForError(error: any) {
+
+    this.toastr.error('Ocorreu um erro ao processar a sua solicitação');
+
+    this.submittingForm = false;
+
+    if(error.status === 422 ) {
+
+      this.serverErrorMessages = JSON.parse(error._body).errors;
+    }else {
+
+      this.serverErrorMessages = ['Falha na comunicação com o servidor. Tente novamente mais tarde.'];
     }
   }
 }
