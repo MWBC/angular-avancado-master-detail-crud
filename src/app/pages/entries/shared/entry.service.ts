@@ -72,7 +72,9 @@ export class EntryService {
 
     jsonData.forEach(element => {
       
-      entries.push(element as Entry);
+      const entry = Object.assign(new Entry(), element);
+
+      entries.push(entry);
     });
 
     return entries;
@@ -80,7 +82,9 @@ export class EntryService {
 
   private jsonDataToEntry(jsonData: any): Entry {
 
-    return jsonData as Entry;
+    const entry = Object.assign(new Entry(), jsonData);
+
+    return entry;
   }
 
   private handleError(error: any): Observable<any> {
