@@ -166,8 +166,6 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
     const entry = Object.assign(new Entry(), this.entryForm.value);
 
-    console.log(this.entryForm);
-
     this.entryService.create(entry).subscribe({
 
       next: entry => this.actionForSuccess(entry), 
