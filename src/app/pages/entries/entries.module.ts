@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { EntriesRoutingModule } from './entries-routing.module';
 
-
 @NgModule({
   declarations: [],
   imports: [

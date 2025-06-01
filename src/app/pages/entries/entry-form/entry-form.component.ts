@@ -11,10 +11,15 @@ import { EntryService } from '../shared/entry.service';
 import { switchMap } from 'rxjs';
 
 import { ToastrService } from 'ngx-toastr';
+import { IMaskModule } from 'angular-imask';
+
+import { DatePickerModule } from 'primeng/datepicker';
+import { Category } from '../../categories/shared/category.model';
+import { CategoryService } from '../../categories/shared/category.service';
 
 @Component({
   selector: 'app-entry-form',
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, IMaskModule, DatePickerModule],
   templateUrl: './entry-form.component.html',
   styleUrl: './entry-form.component.css'
 })
@@ -31,6 +36,18 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   submittingForm: boolean = false;
 
   entry: Entry = new Entry();
+
+  imaskConfig = {
+
+    mask: Number, 
+    scale: 2, 
+    thousandsSeparator: '', 
+    padFractionalZeros: true, 
+    normalizeZeros: true, 
+    radix: ','
+  };
+
+  categories!: Category[];
   
   constructor(
     
@@ -38,7 +55,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     private route: ActivatedRoute, 
     private router: Router, 
     private formbuilder: FormBuilder, 
-    private toastr: ToastrService
+    private toastr: ToastrService, 
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +66,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     this.buildEntryForm();
 
     this.loadEntry();
+
+    this.loadCategories();
   }
 
   ngAfterContentChecked(): void {
@@ -68,6 +88,21 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  get typeOption(): Array<any> {
+
+    return Object.entries(Entry.types).map(
+
+      ([value, text]) => {
+
+        return {
+
+          text: text, 
+          value: value
+        };
+      }
+    );
+  }
+
   private setCurrentAction(): void {
 
     if(this.route.snapshot.url[0].path == 'new') {
@@ -86,10 +121,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: [null], 
       name: [null, [Validators.required, Validators.minLength(2)]], 
       description: [null], 
-      type: [null, [Validators.required]], 
+      type: ["expense", [Validators.required]], 
       amount: [null, [Validators.required]], 
       date: [null, [Validators.required]], 
-      paid: [null, [Validators.required]], 
+      paid: [true, [Validators.required]], 
       categoryId: [null, Validators.required]
     });
   }
@@ -131,6 +166,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
     const entry = Object.assign(new Entry(), this.entryForm.value);
 
+    console.log(this.entryForm);
+
     this.entryService.create(entry).subscribe({
 
       next: entry => this.actionForSuccess(entry), 
@@ -169,5 +206,13 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
       this.serverErrorMessages = ['Falha na comunicação com o servidor. Tente novamente mais tarde.'];
     }
+  }
+
+  private loadCategories() {
+
+    this.categoryService.getAll().subscribe({
+
+      next: categories => this.categories = categories
+    });
   }
 }
