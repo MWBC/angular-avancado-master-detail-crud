@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
