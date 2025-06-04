@@ -23,20 +23,15 @@ export class EntryService extends BaseResourceService<Entry> {
 
   override create(entry: Entry): Observable<Entry> {
 
-    return this.categoryService.getById(entry.categoryId!).pipe(
-
-      mergeMap(category => {
-
-        entry.category = category;
-
-        return super.create(entry);
-      })
-    );
+    return this.setEntryAndSendToServer(entry, super.create.bind(this));
   }
 
   override update(entry: Entry): Observable<Entry> {
 
-    const url = `${this.apiPath}/${entry.id}}`;
+    return this.setEntryAndSendToServer(entry, super.update.bind(this));
+  }
+
+  private setEntryAndSendToServer(entry: Entry, sendFn: (a: Entry) => Observable<Entry>): Observable<Entry> {
 
     return this.categoryService.getById(entry.categoryId!).pipe(
 
@@ -44,8 +39,9 @@ export class EntryService extends BaseResourceService<Entry> {
 
         entry.category = category;
 
-        return super.update(entry);
-      })
+        return sendFn(entry);
+      }), 
+      catchError(this.handleError)
     );
   }
 }
