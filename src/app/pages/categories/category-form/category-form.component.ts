@@ -1,16 +1,12 @@
-import { Component, OnInit, AfterContentChecked, Inject, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
 
-import { switchMap } from 'rxjs';
-
-import { ToastrService } from 'ngx-toastr';
 import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form.component';
 
 @Component({
@@ -38,5 +34,17 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
       name: [null, [Validators.required, Validators.minLength(2)]], 
       description: [null]
     });
+  }
+
+  protected override creationPageName(): string {
+    
+    return 'Cadastro de Nova Categoria';
+  }
+
+  protected override editionPageName(): string {
+    
+    const categoryName = this.resource.name || "";
+
+    return 'Editando Categoria: ' + categoryName;
   }
 }

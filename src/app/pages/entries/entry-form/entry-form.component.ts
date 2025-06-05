@@ -1,16 +1,12 @@
-import { Component, OnInit, AfterContentChecked, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
 import { Entry } from '../shared/entry.model';
 import { EntryService } from '../shared/entry.service';
 
-import { switchMap } from 'rxjs';
-
-import { ToastrService } from 'ngx-toastr';
 import { IMaskModule } from 'angular-imask';
 
 import { DatePickerModule } from 'primeng/datepicker';
@@ -96,5 +92,17 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
 
       next: categories => this.categories = categories
     });
+  }
+
+  protected override creationPageName(): string {
+    
+    return 'Cadastro de Novo Lançamento';
+  }
+
+  protected override editionPageName(): string {
+    
+    const entryName = this.resource.name || "";
+
+    return 'Editando Lançamento: ' + entryName;
   }
 }

@@ -12,7 +12,7 @@ export class Entry extends BaseResourceModel {
     constructor(
 
         public override id?: number, 
-        public name?: string, 
+        public override name?: string, 
         public description?: string, 
         public type?: string, 
         public amount?: string, 
