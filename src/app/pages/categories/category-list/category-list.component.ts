@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
 import { CommonModule } from '@angular/common';
+import { BaseResourceListComponent } from '../../../shared/components/base-resource-list.component';
 
 @Component({
   selector: 'app-category-list',
@@ -11,32 +12,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.css'
 })
-export class CategoryListComponent implements OnInit{
+export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
-  categories: Category[] = [];
-
-  constructor(private categoryService: CategoryService) {}
-
-  ngOnInit(): void {
-
-    this.categoryService.getAll().subscribe({
-
-      next: categories => this.categories = categories, 
-      error: () => alert('Erro ao carregar a lista de categorias')
-    });
-  }
-
-  deleteCategory(category: any) {
+  constructor(
     
-    const mustDelete = confirm('Deseja realmente deletar essa categoria?');
+    protected categoryService: CategoryService, 
+    protected override injector: Injector
+  ) {
 
-    if(mustDelete) {
-
-    this.categoryService.delete(category.id).subscribe({
-
-      next: () => this.categories = this.categories.filter(element => element != category), 
-      error: () => alert('Erro ao tentar excluir categoria.')
-    });
-    }
+    super(injector, categoryService);
   }
 }

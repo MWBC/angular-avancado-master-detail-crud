@@ -147,13 +147,13 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     });
   }
 
-  private updateResource() {
+  protected updateResource() {
 
     const resource = this.jsonDataToResourceFn(this.resourceForm.value);
 
     this.resourceService.update(resource).subscribe({
 
-      next: category => this.actionForSuccess(category), 
+      next: resource => this.actionForSuccess(resource), 
       error: error => this.actionForError(error)
     });
   }
