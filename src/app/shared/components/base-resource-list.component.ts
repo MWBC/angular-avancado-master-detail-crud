@@ -31,7 +31,7 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
         });
     }
 
-    deleteCategory(resource: any) {
+    deleteResource(resource: any) {
     
         const mustDelete = confirm('Deseja realmente deletar esse recurso?');
 

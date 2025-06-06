@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { Entry } from '../shared/entry.model';
 import { EntryService } from '../shared/entry.service';
 import { CommonModule } from '@angular/common';
+import { BaseResourceListComponent } from '../../../shared/components/base-resource-list.component';
 
 @Component({
   selector: 'app-entry-list',
@@ -11,32 +12,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './entry-list.component.html',
   styleUrl: './entry-list.component.css'
 })
-export class EntryListComponent implements OnInit{
+export class EntryListComponent extends BaseResourceListComponent<Entry> {
 
-  entries: Entry[] = [];
 
-  constructor(private entryService: EntryService) {}
-
-  ngOnInit(): void {
-
-    this.entryService.getAll().subscribe({
-
-      next: entries => this.entries = entries.sort((a, b) => b.id! - a.id!), 
-      error: () => alert('Erro ao carregar a lista de lançamentos')
-    });
-  }
-
-  deleteEntry(entry: any) {
+  constructor(
     
-    const mustDelete = confirm('Deseja realmente deletar esse lançamento?');
+    protected override injector: Injector, 
+    private entryService: EntryService) {
 
-    if(mustDelete) {
-
-    this.entryService.delete(entry.id).subscribe({
-
-      next: () => this.entries = this.entries.filter(element => element != entry), 
-      error: () => alert('Erro ao tentar excluir lançamento.')
-    });
+      super(injector, entryService);
     }
-  }
 }
