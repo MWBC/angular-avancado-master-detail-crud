@@ -8,15 +8,17 @@ import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
 
 import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form.component';
+import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
-  selector: 'app-category-form',
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, SharedModule],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css'
 })
 export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
   
+  breadCrumbLinks: Array<any> = [];
+
   constructor(
     
     protected override injector: Injector, 
@@ -24,6 +26,22 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
   ) {
 
     super(injector, categoryService);
+  }
+
+  override ngAfterContentChecked() {
+
+    this.setTitlePage();
+
+    this.breadCrumbLinks = [{
+
+      'text': 'Categorias', 
+      'link': '/categories'
+      }, 
+      {
+
+        'text': this.pageTitle
+      }
+    ];
   }
 
   protected override buildResourceForm(): void {

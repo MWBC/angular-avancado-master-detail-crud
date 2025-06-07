@@ -13,10 +13,10 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { Category } from '../../categories/shared/category.model';
 import { CategoryService } from '../../categories/shared/category.service';
 import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form.component';
+import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
-  selector: 'app-entry-form',
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, IMaskModule, DatePickerModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, IMaskModule, DatePickerModule, SharedModule],
   templateUrl: './entry-form.component.html',
   styleUrl: './entry-form.component.css'
 })
@@ -34,6 +34,8 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
 
   categories!: Category[];
   
+  breadCrumbLinks: Array<any> = [];
+
   constructor(
     
     protected entryService: EntryService, 
@@ -54,6 +56,22 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
     this.loadResource();
 
     this.loadCategories();
+  }
+
+  override ngAfterContentChecked() {
+
+    this.setTitlePage();
+
+    this.breadCrumbLinks = [{
+
+      'text': 'Lançamentos', 
+      'link': '/entries'
+      }, 
+      {
+
+        'text': this.pageTitle
+      }
+    ];
   }
 
   get typeOption(): Array<any> {

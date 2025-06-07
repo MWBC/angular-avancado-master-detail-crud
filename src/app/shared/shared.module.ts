@@ -1,14 +1,17 @@
 import { InjectionToken, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule, 
+    BreadCrumbComponent, 
   ], 
   exports: [
 
-    CommonModule
+    CommonModule, 
+    BreadCrumbComponent
   ]
 })
 

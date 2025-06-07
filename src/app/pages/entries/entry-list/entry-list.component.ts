@@ -5,15 +5,16 @@ import { Entry } from '../shared/entry.model';
 import { EntryService } from '../shared/entry.service';
 import { CommonModule } from '@angular/common';
 import { BaseResourceListComponent } from '../../../shared/components/base-resource-list.component';
+import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
-  selector: 'app-entry-list',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, SharedModule],
   templateUrl: './entry-list.component.html',
   styleUrl: './entry-list.component.css'
 })
 export class EntryListComponent extends BaseResourceListComponent<Entry> {
 
+  breadCrumbLinks: Array<any> = [];
 
   constructor(
     
@@ -21,5 +22,13 @@ export class EntryListComponent extends BaseResourceListComponent<Entry> {
     private entryService: EntryService) {
 
       super(injector, entryService);
+
+      this.breadCrumbLinks = [
+        
+        {
+
+          'text': 'Lançamentos'
+        }
+      ];
     }
 }
