@@ -16,7 +16,7 @@ import { BaseResourceFormComponent } from '../../../shared/components/base-resou
 import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, IMaskModule, DatePickerModule, SharedModule],
+  imports: [ReactiveFormsModule, CommonModule, IMaskModule, DatePickerModule, SharedModule],
   templateUrl: './entry-form.component.html',
   styleUrl: './entry-form.component.css'
 })
@@ -36,6 +36,12 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
   
   breadCrumbLinks: Array<any> = [];
 
+  buttonClass: string;
+
+  buttonText: string;
+
+  buttonLink: string;
+
   constructor(
     
     protected entryService: EntryService, 
@@ -45,6 +51,10 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
   ) {
 
     super(injector, entryService);
+
+      this.buttonClass = 'btn-success float-end';
+      this.buttonLink = 'new';
+      this.buttonText = '+ Novo Lançamento';
   }
 
   override ngOnInit(): void {

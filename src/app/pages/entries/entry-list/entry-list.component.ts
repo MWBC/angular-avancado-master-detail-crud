@@ -16,6 +16,14 @@ export class EntryListComponent extends BaseResourceListComponent<Entry> {
 
   breadCrumbLinks: Array<any> = [];
 
+  buttonClass: string;
+
+  buttonText: string;
+
+  buttonLink: string;
+
+  pageTitle: string;
+
   constructor(
     
     protected override injector: Injector, 
@@ -30,5 +38,10 @@ export class EntryListComponent extends BaseResourceListComponent<Entry> {
           'text': 'Lançamentos'
         }
       ];
+
+      this.buttonClass = 'btn-success float-end';
+      this.buttonLink = 'new';
+      this.buttonText = '+ Novo Lançamento';
+      this.pageTitle = 'Lançamentos';
     }
 }

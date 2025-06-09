@@ -17,6 +17,14 @@ export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
   breadCrumbLinks: Array<any>;
 
+  buttonClass: string;
+
+  buttonText: string;
+
+  buttonLink: string;
+
+  pageTitle: string;
+
   constructor(
     
     protected categoryService: CategoryService, 
@@ -29,5 +37,10 @@ export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
       'text': 'Categorias'
     }];
+
+    this.buttonClass = 'btn-success float-end';
+    this.buttonLink = 'new';
+    this.buttonText = '+ Nova Categoria';
+    this.pageTitle = 'Categorias';
   }
 }

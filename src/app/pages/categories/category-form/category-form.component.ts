@@ -11,13 +11,19 @@ import { BaseResourceFormComponent } from '../../../shared/components/base-resou
 import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, SharedModule],
+  imports: [ReactiveFormsModule, CommonModule, SharedModule],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css'
 })
 export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
   
   breadCrumbLinks: Array<any> = [];
+
+  buttonClass: string;
+
+  buttonText: string;
+
+  buttonLink: string;
 
   constructor(
     
@@ -26,6 +32,10 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
   ) {
 
     super(injector, categoryService);
+
+    this.buttonClass = 'btn-light float-end';
+    this.buttonLink = '/categories';
+    this.buttonText = '<< Voltar';
   }
 
   override ngAfterContentChecked() {
