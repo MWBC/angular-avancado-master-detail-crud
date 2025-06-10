@@ -2,19 +2,22 @@ import { InjectionToken, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { FormFieldErrorComponent } from './components/form-field-error/form-field-error.component';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule, 
     BreadCrumbComponent, 
-    PageHeaderComponent
+    PageHeaderComponent, 
+    FormFieldErrorComponent
   ], 
   exports: [
 
     CommonModule, 
     BreadCrumbComponent, 
-    PageHeaderComponent
+    PageHeaderComponent, 
+    FormFieldErrorComponent
   ]
 })
 

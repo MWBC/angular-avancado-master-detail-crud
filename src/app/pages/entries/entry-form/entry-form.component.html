@@ -1,14 +1,5 @@
 <app-bread-crumb [items]="breadCrumbLinks"></app-bread-crumb>
 
-<!-- <div class="row mb-4">
-    <div class="col-md">
-        <h1 class="h2 border-left pl-2">{{pageTitle}}</h1>
-    </div>
-
-    <div class="col-md">
-        <a routerLink="/entries" class="btn-light btn float-end"><< Voltar</a>
-    </div>
-</div> -->
 <app-page-header 
     [button-class]="buttonClass" 
     [button-link]="buttonLink" 
@@ -30,20 +21,13 @@
                     <select class="form-control" name="type" id="type" formControlName="type">
                         <option *ngFor="let option of typeOption" value="{{option.value}}">{{option.text}}</option>
                     </select>
-
-                    <div *ngIf="resourceForm.get('type')!.invalid && resourceForm.get('type')!.touched" class="text-danger">
-                        <div *ngIf="resourceForm.get('type')?.errors?.['required']">Dado obrigatório</div>
-                    </div>
+                    <app-form-field-error [form-control]="resourceForm.get('type')!"></app-form-field-error>
                 </div>
 
                 <div class="col-md-5">
                     <label for="name" class="form-label">Lançamento</label>
                     <input type="text" name="name" id="name" class="form-control" formControlName="name">
-
-                    <div *ngIf="resourceForm.get('name')!.invalid && resourceForm.get('name')!.touched" class="text-danger">
-                        <div *ngIf="resourceForm.get('name')?.errors?.['required']">Dado obrigatório</div>
-                        <div *ngIf="resourceForm.get('name')?.errors?.['minlength']">Mínimo de caracteres não atingido</div>
-                    </div>
+                    <app-form-field-error [form-control]="resourceForm.get('name')!"></app-form-field-error>
                 </div>
 
                 <div class="col-md-3">
@@ -55,10 +39,7 @@
 
                         <input [imask]="imaskConfig" type="text" class="form-control text-end" id="amount" formControlName="amount">
                     </div>
-
-                    <div *ngIf="resourceForm.get('amount')!.invalid && resourceForm.get('amount')!.touched" class="text-danger">
-                        <div *ngIf="resourceForm.get('amount')?.errors?.['required']">Dado obrigatório</div>
-                    </div>
+                    <app-form-field-error [form-control]="resourceForm.get('amount')!"></app-form-field-error>
                 </div>
 
                 <div class="col-md-2">
@@ -71,10 +52,7 @@
                         dateFormat="dd/mm/yy"
                         [showButtonBar]="true">
                     </p-date-picker>
-
-                    <div *ngIf="resourceForm.get('date')!.invalid && resourceForm.get('date')!.touched" class="text-danger">
-                        <div *ngIf="resourceForm.get('date')?.errors?.['required']">Dado obrigatório</div>
-                    </div>
+                    <app-form-field-error [form-control]="resourceForm.get('date')!"></app-form-field-error>
                 </div>
             </div>
 
@@ -86,10 +64,7 @@
                         <label (click)="resourceForm.get('paid')?.setValue(true)" [class.active]="resourceForm.get('paid')?.value == true" class="btn btn-outline-info">Pago</label>
                         <label (click)="resourceForm.get('paid')?.setValue(false)" [class.active]="resourceForm.get('paid')?.value == false" class="btn btn-outline-info">Pendente</label>
                     </div>
-
-                    <div *ngIf="resourceForm.get('paid')!.invalid && resourceForm.get('paid')!.touched" class="text-danger">
-                        <div *ngIf="resourceForm.get('paid')?.errors?.['required']">Dado obrigatório</div>
-                    </div>
+                    <app-form-field-error [form-control]="resourceForm.get('paid')!"></app-form-field-error>
                 </div>
             
                 <div class="col-md-3">
@@ -97,10 +72,7 @@
                     <select class="form-control" name="categoryId" id="categoryId" formControlName="categoryId">
                         <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
                     </select>
-
-                    <div *ngIf="resourceForm.get('categoryId')!.invalid && resourceForm.get('categoryId')!.touched" class="text-danger">
-                        <div *ngIf="resourceForm.get('categoryId')?.errors?.['required']">Dado obrigatório</div>
-                    </div>
+                    <app-form-field-error [form-control]="resourceForm.get('categoryId')!"></app-form-field-error>
                 </div>
 
                 <div class="col-md-7">
