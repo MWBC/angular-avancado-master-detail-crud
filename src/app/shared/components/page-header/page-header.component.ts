@@ -18,6 +18,8 @@ export class PageHeaderComponent implements OnInit {
 
   @Input('button-link') buttonLink?: string;
 
+  @Input('show-button') showButton: boolean = true;
+
   constructor() {}
 
   ngOnInit(): void {
