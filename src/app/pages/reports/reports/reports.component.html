@@ -58,7 +58,7 @@
             </div>
 
             <div class="card-body">
-                <div class="card-title">1500</div>
+                <div class="card-title">{{revenueTotal}}</div>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             </div>
 
             <div class="card-body">
-                <div class="card-title">500</div>
+                <div class="card-title">{{expenseTotal}}</div>
             </div>
         </div>
     </div>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="card-body">
-                <div class="card-title">1000</div>
+                <div class="card-title">{{balance}}</div>
             </div>
         </div>
     </div>
@@ -91,4 +91,12 @@
 <div class="row">
 
     <hr>
+
+    <div class="col-md-6">
+        <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
+    </div>
+
+    <div class="col-md-6">
+        <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
+    </div>
 </div>

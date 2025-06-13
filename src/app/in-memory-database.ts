@@ -19,7 +19,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         const entries: Entry[] = [
 
             {id: 1, name: 'Conta de luz', description: 'Conta de luz mensal', type: 'expense', amount: '300', date: '10/05/2025', paid: true, categoryId: categories[0].id, category: categories[0]} as Entry, 
-            {id: 2, name: 'Seguro Desemprego', description: 'Seguro Desemprego', type: 'renevue', amount: '2400', date: '19/05/2025', paid: true, categoryId: categories[3].id, category: categories[3]} as Entry
+            {id: 2, name: 'Seguro Desemprego', description: 'Seguro Desemprego', type: 'revenue', amount: '2400', date: '19/05/2025', paid: true, categoryId: categories[3].id, category: categories[3]} as Entry
         ];
 
         return {categories, entries};

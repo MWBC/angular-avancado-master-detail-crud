@@ -6,7 +6,7 @@ export class Entry extends BaseResourceModel {
     static types = {
 
         expense: 'Despesa', 
-        renevue: 'Receita'
+        revenue: 'Receita'
     };
 
     constructor(
