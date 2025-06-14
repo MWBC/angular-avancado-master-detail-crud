@@ -1,7 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Validators, ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 
 
 import { Category } from '../shared/category.model';
@@ -11,7 +11,7 @@ import { BaseResourceFormComponent } from '../../../shared/components/base-resou
 import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
-  imports: [ReactiveFormsModule, SharedModule],
+  imports: [ReactiveFormsModule, CommonModule, SharedModule],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css'
 })

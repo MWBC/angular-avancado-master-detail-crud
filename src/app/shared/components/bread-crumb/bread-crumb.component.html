@@ -1,18 +1,13 @@
 <nav class="mb-5">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a routerLink="/">Home</a>
-    </li>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/">Home</a>
+        </li>
 
-    @for (item of items; track item) {
-      <li class="breadcrumb-item" [class.active]="isTheLastIndex(item)">
-        @if (isTheLastIndex(item)) {
-          <span>{{item.text}}</span>
-        }
-        @if (!isTheLastIndex(item)) {
-          <a [routerLink]="item.link">{{item.text}}</a>
-        }
-      </li>
-    }
-  </ol>
+        <li *ngFor="let item of items" class="breadcrumb-item" [class.active]="isTheLastIndex(item)">
+            <span *ngIf="isTheLastIndex(item)">{{item.text}}</span>
+            
+            <a *ngIf="!isTheLastIndex(item)" [routerLink]="item.link">{{item.text}}</a>
+        </li>
+    </ol>
 </nav>

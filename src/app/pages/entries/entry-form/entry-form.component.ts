@@ -1,6 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 import { Entry } from '../shared/entry.model';
@@ -15,7 +16,7 @@ import { BaseResourceFormComponent } from '../../../shared/components/base-resou
 import { SharedModule } from "../../../shared/shared.module";
 
 @Component({
-  imports: [ReactiveFormsModule, IMaskModule, DatePickerModule, SharedModule],
+  imports: [ReactiveFormsModule, CommonModule, IMaskModule, DatePickerModule, SharedModule],
   templateUrl: './entry-form.component.html',
   styleUrl: './entry-form.component.css'
 })

@@ -1,10 +1,7 @@
-@if (serverErrorMessages.length > 0) {
-  <div class="alert alert-danger mt-4">
-    <strong>Erro no servidor:</strong>
-    <ul>
-      @for (error of serverErrorMessages; track error) {
-        <li>{{error}}</li>
-      }
-    </ul>
-  </div>
-}
+    <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages.length > 0">
+        <strong>Erro no servidor:</strong>
+
+        <ul>
+            <li *ngFor="let error of serverErrorMessages">{{error}}</li>
+        </ul>
+    </div>
