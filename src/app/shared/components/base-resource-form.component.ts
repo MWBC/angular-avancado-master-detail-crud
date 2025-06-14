@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { BaseResourceModel } from '../models/base-resource.model';
 import { BaseResourceService } from '../services/base-resource.service';
-import { CommonModule } from '@angular/common';
+
 import { JSON_TO_RESOURCE_FN, RESOURCE_MODEL } from '../shared.module';
 
 @Component({

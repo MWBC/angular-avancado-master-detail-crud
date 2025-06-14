@@ -2,13 +2,13 @@ import { Component, Injector, OnInit } from "@angular/core";
 import { BaseResourceModel } from "../models/base-resource.model";
 import { BaseResourceService } from "../services/base-resource.service";
 import { RESOURCE_MODEL, SharedModule } from "../shared.module";
-import { CommonModule } from "@angular/common";
+
 
 @Component({
 
     standalone: true, 
     template: '', 
-    imports: [SharedModule, CommonModule]
+    imports: [SharedModule]
 })
 export abstract class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
 
