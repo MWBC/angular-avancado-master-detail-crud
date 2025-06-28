@@ -44,7 +44,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(), 
     importProvidersFrom([
 
-      HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase)
+      // HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase)
     ]), 
     provideToastr({
       timeOut: 3000, // Tempo de exibição do toast
