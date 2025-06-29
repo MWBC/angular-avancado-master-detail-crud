@@ -60,7 +60,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
  
     delete(id: number): Observable<any> {
     
-        const url = `${this.apiPath}/${id}}`;
+        const url = `${this.apiPath}/${id}`;
     
         return this.http.delete(url).pipe(
     
