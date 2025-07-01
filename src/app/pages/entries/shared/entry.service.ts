@@ -7,6 +7,8 @@ import { Entry } from './entry.model';
 import { CategoryService } from '../../categories/shared/category.service';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
 
+import { enviroment } from '../../../enviroment';
+
 import moment from 'moment';
 
 @Injectable({
@@ -20,7 +22,7 @@ export class EntryService extends BaseResourceService<Entry> {
     private categoryService: CategoryService
   ) { 
 
-    super('api/entries', injector, Entry.fromJson);
+    super(enviroment.apiBaseUrl + 'api/entries', injector, Entry.fromJson);
   }
 
   override create(entry: Entry): Observable<Entry> {

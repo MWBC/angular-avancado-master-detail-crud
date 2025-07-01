@@ -32,6 +32,8 @@ export class Entry extends BaseResourceModel {
 
     static fromJson(jsonData: any): Entry {
 
+        jsonData.amount = jsonData.amount.toString().replace('.', ',');
+
         return Object.assign(new Entry(), jsonData);
     }
 }
