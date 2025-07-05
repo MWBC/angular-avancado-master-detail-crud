@@ -6,7 +6,7 @@ import { CoreModule } from './core/core.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonModule, NavbarComponent, CoreModule],
+  imports: [RouterOutlet, ButtonModule, CoreModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

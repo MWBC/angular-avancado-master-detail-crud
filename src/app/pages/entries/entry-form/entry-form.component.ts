@@ -18,7 +18,8 @@ import { SharedModule } from "../../../shared/shared.module";
 @Component({
   imports: [ReactiveFormsModule, CommonModule, IMaskModule, DatePickerModule, SharedModule],
   templateUrl: './entry-form.component.html',
-  styleUrl: './entry-form.component.css'
+  styleUrl: './entry-form.component.css', 
+  standalone: true
 })
 export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
 
