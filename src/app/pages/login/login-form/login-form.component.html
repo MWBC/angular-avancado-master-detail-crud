@@ -4,25 +4,26 @@
         <div class="brand">💰 Finan$ys</div>
         <h2 class="text-center login-title mb-4">Login</h2>
 
-        <form>
+        <form [formGroup]="loginForm" (submit)="submitForm()">
           <div class="mb-3">
             <label for="username" class="form-label">Usuário</label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-              <input type="text" class="form-control" id="username" placeholder="Digite seu usuário" required />
+              <input type="text" class="form-control" id="username" formControlName="username" placeholder="Digite seu usuário" required />
             </div>
+            <app-form-field-error [form-control]="loginForm.get('username')!"></app-form-field-error>
           </div>
 
           <div class="mb-4">
             <label for="password" class="form-label">Senha</label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-              <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required />
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Digite sua senha" required />
             </div>
           </div>
 
           <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Entrar</button>
+            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Entrar</button>
           </div>
         </form>
       </div>
