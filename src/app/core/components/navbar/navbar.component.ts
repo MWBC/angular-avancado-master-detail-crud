@@ -9,4 +9,10 @@ import { CoreModule } from '../../core.module';
 })
 export class NavbarComponent {
 
+  username: String;
+
+  constructor() {
+
+    this.username = localStorage.getItem('name') != undefined ? localStorage.getItem('name')! : '';
+  }
 }

@@ -3,6 +3,7 @@ import { LoginFormComponent } from './pages/login/login-form/login-form.componen
 import { LoginLayoutComponent } from './shared/components/login-layout/login-layout.component';
 import { AppLayoutComponent } from './shared/components/app-layout/app-layout.component';
 import { authGuard } from './auth.guard';
+import { LogoutComponent } from './core/components/logout/logout.component';
 
 export const routes: Routes = [
 
@@ -12,6 +13,7 @@ export const routes: Routes = [
         {path: 'categories', loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule), canActivate: [authGuard]}, 
         {path: 'entries', loadChildren: () => import('./pages/entries/entries.module').then(m => m.EntriesModule), canActivate: [authGuard]}, 
         {path: 'reports', loadChildren: () => import('./pages/reports/reports.module').then(m => m.ReportsModule), canActivate: [authGuard]}, 
-        {path: '', redirectTo: '/reports', pathMatch: 'full'}
+        {path: 'logout', component: LogoutComponent}, 
+        {path: '', redirectTo: '/login', pathMatch: 'full'}
     ]}
 ];

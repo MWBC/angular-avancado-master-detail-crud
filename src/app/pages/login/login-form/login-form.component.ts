@@ -38,7 +38,9 @@ export class LoginFormComponent implements OnInit {
 
       this.loginService.login(this.loginForm).subscribe({
 
-      next: (response) => {
+      next: (response: any) => {
+
+        localStorage.setItem('name', response.name);
 
         this.toastr.success('Login realizado com sucesso!');
 
@@ -51,6 +53,9 @@ export class LoginFormComponent implements OnInit {
         if(error.status == 401) {
 
           this.toastr.error('Usuário ou senha incorretos.');
+        }else if(error.status == 0) {
+
+          this.toastr.error('Não foi possível se comunicar com o servidor. Tente novamente mais tarde.');
         }else {
 
         this.toastr.error(error.error.message);

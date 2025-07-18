@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { LoginService } from './pages/login/shared/login.service';
+import { catchError, map } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
@@ -16,12 +17,11 @@ export const authGuard: CanActivateFn = (route, state) => {
     }, 
     error: (error) => {
 
-      console.log(response);
+      console.log(error);
 
       router.navigateByUrl('login');
       
       return false;
-
     }
   });
 

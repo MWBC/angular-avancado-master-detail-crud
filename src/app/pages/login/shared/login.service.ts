@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
 import { Login } from './login.model';
 import { HttpClient } from '@angular/common/http';
@@ -31,5 +31,17 @@ export class LoginService {
   me(): Observable<Object> {
 
     return this.http.get(enviroment.apiBaseUrl + 'api/auth/me', {withCredentials: true});
+  }
+
+  logout(): Observable<Object> {
+
+    localStorage.clear();
+    
+    return this.http.post(enviroment.apiBaseUrl + 'api/auth/logout', {}, {withCredentials: true});
+  }
+
+  isAuthorized(response: any) {
+
+    return response.enabled;
   }
 }
