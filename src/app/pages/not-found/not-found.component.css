@@ -1,0 +1,15 @@
+    .error-emoji {
+      font-size: 5rem;
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .btn-shadow {
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    }
+
+    .container-not-found {
+        background: linear-gradient(to right, #6dd5fa, #2980b9);
+    }
