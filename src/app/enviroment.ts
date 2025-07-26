@@ -1,4 +1,4 @@
 export const enviroment = {
 
-    apiBaseUrl: 'http://localhost:8080/'
+    apiBaseUrl: 'https://finansys-backend.onrender.com/'
 }
