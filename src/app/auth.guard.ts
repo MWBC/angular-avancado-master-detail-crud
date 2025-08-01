@@ -1,29 +1,23 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { LoginService } from './pages/login/shared/login.service';
-import { catchError, map } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = async (route, state) => {
 
   const loginService = inject(LoginService);
 
   const router = inject(Router);
 
-  let response = loginService.me().subscribe({
+  try{
 
-    next: (response) => {
+   let response = await firstValueFrom(loginService.me());
 
-      return true;
-    }, 
-    error: (error) => {
+   return true;
+  }catch(error) {
 
-      console.log(error);
+    router.navigateByUrl('login');
 
-      router.navigateByUrl('login');
-      
-      return false;
-    }
-  });
-
-  return true;
+    return false;
+  }
 };

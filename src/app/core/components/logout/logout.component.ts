@@ -22,7 +22,6 @@ export class LogoutComponent implements OnInit {
 
       next: (response) => {
 
-        console.log(response);
         this.router.navigateByUrl('/login');
       }
     });
