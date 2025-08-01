@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
 import { Login } from './login.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -30,7 +30,7 @@ export class LoginService {
 
   me(): Observable<Object> {
 
-    return this.http.get(enviroment.apiBaseUrl + 'api/auth/me', {withCredentials: true});
+    return this.http.get(enviroment.apiBaseUrl + 'api/auth/me', {withCredentials: true, headers: new HttpHeaders({timeout: 10000})});
   }
 
   logout(): Observable<Object> {

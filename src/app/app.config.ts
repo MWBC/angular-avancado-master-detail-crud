@@ -11,9 +11,10 @@ import { routes } from './app.routes';
 import { InMemoryDatabase } from './in-memory-database';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { provideToastr } from 'ngx-toastr';
+import { timeoutInterceptor } from './interceptors/timeout.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,7 +42,7 @@ export const appConfig: ApplicationConfig = {
         clear: 'Limpar'
       }
     }), 
-    provideHttpClient(), 
+    provideHttpClient(withInterceptors([timeoutInterceptor])), 
     importProvidersFrom([
 
       // HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase)
