@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { NavbarComponent } from "./core/components/navbar/navbar.component";
 import { CoreModule } from './core/core.module';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonModule, CoreModule],
+  imports: [RouterOutlet, ButtonModule, CoreModule, NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -16,6 +16,9 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular
 import { provideToastr } from 'ngx-toastr';
 import { timeoutInterceptor } from './interceptors/timeout.interceptor';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { loadingInterceptor } from './interceptors/loading.interceptor';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     
@@ -42,9 +45,10 @@ export const appConfig: ApplicationConfig = {
         clear: 'Limpar'
       }
     }), 
-    provideHttpClient(withInterceptors([timeoutInterceptor])), 
+    provideHttpClient(withInterceptors([timeoutInterceptor, loadingInterceptor])), 
     importProvidersFrom([
 
+      NgxSpinnerModule.forRoot({type: 'line-spin-clockwise-fade'})
       // HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase)
     ]), 
     provideToastr({
