@@ -39,7 +39,7 @@ export class LoginFormComponent implements OnInit {
       this.loginService.login(this.loginForm).subscribe({
 
       next: (response: any) => {
-
+        
         localStorage.setItem('name', response.name);
 
         this.toastr.success('Login realizado com sucesso!');
