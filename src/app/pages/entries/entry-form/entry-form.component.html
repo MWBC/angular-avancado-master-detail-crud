@@ -19,7 +19,7 @@
                 <div class="col-md-2">
                     <label for="type" class="form-label">Tipo</label>
                     <select class="form-control" name="type" id="type" formControlName="type">
-                        <option *ngFor="let option of typeOption" value="{{option.value}}">{{option.text}}</option>
+                        <option *ngFor="let option of typeOptions" value="{{option.value}}">{{option.text}}</option>
                     </select>
                     <app-form-field-error [form-control]="resourceForm.get('type')!"></app-form-field-error>
                 </div>
