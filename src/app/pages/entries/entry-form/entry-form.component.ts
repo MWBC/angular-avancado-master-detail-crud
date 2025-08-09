@@ -42,6 +42,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
 
   buttonLink: string;
 
+  typeOptions: any;
   constructor(
     
     protected entryService: EntryService, 
@@ -55,6 +56,8 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> {
       this.buttonClass = 'btn-success float-end';
       this.buttonLink = 'new';
       this.buttonText = '+ Novo Lançamento';
+
+      this.typeOptions = this.typeOption;
   }
 
   override ngOnInit(): void {
