@@ -33,7 +33,6 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
 
         const url = this.apiPath + '/paginated?page=' + page?.toString() + '&size=' + pageSize?.toString();
 
-        console.log('url ' + url.toString())
         return this.http.get<any>(url, {withCredentials: true}).pipe(
 
             map(response => {
