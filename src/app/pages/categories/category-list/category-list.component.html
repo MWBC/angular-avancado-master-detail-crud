@@ -29,3 +29,13 @@
         </tr>
     </tbody>
 </table>
+
+<div>
+    <p-paginator [first]="0"
+    [rows]="rows"
+    [totalRecords]="totalRecords" 
+    [rowsPerPageOptions]="[10, 20, 30]" 
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Exibindo {first} - {last} de {totalRecords}"
+    (onPageChange)="onPageEvent($event)"></p-paginator>
+</div>

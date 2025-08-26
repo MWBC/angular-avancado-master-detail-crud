@@ -29,6 +29,23 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         );
     }
  
+    getAllPaginated(page?: number, pageSize?: number, sortBy?: string, sortDir?: string): Observable<any> {
+
+        const url = this.apiPath + '/paginated?page=' + page?.toString() + '&size=' + pageSize?.toString();
+
+        console.log('url ' + url.toString())
+        return this.http.get<any>(url, {withCredentials: true}).pipe(
+
+            map(response => {
+                
+                response.content = response.content.map(this.jsonDataPaginatedToResources.bind(this))
+
+                return response;
+            }), 
+            catchError(this.handleError)
+        );
+    }
+
     getById(id: number): Observable<T> {
     
         const url = `${this.apiPath}/${id}`;
@@ -79,6 +96,13 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         });
 
         return resources;
+    }
+
+    protected jsonDataPaginatedToResources(jsonData: any): any {
+
+        jsonData = this.jsonDataToResourceFn(jsonData);
+
+        return jsonData;
     }
 
     protected jsonDataToResource(jsonData: any): T {
