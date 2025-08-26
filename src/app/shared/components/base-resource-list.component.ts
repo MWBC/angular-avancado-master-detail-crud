@@ -3,6 +3,7 @@ import { BaseResourceModel } from "../models/base-resource.model";
 import { BaseResourceService } from "../services/base-resource.service";
 import { RESOURCE_MODEL, SharedModule } from "../shared.module";
 import { CommonModule } from "@angular/common";
+import { PaginatorModule } from "primeng/paginator";
 
 @Component({
 
@@ -13,6 +14,12 @@ import { CommonModule } from "@angular/common";
 export abstract class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
 
     protected resources: T[];
+
+    protected first: number = 0;
+
+    protected rows!: number;
+
+    protected totalRecords?: number;
 
     constructor(
 
@@ -43,5 +50,5 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
                 error: () => alert('Erro ao tentar excluir recurso.')
             });
         }
-  }
+    }
 }
